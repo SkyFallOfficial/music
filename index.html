@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiper szuper biztos nem kalózkodott zenét lejátszó alkalmazás</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main>
+        <section class="mb-4">
+            <form id="search-form" class="flex justify-center items-center gap-2 mb-4">
+                <input type="text" id="search-input" placeholder="Keresés dalra..." class="rounded px-2 py-1 text-gray-900" />
+            </form>
+        </section>
+
+        <section id="songs">
+            <div id="song-template" style="display:none;">
+                <div class="flex items-center bg-gray-800 rounded-lg shadow-md p-2 max-w-xl mx-auto mb-3">
+                    <img src="img/placeholder.png" alt="Album borító" class="w-7 h-7 rounded-md object-cover mr-2">
+                    <div class="flex-1">
+                        <div class="font-semibold text-sm text-gray-100">Dal címe</div>
+                        <div class="text-xs text-gray-400 artist-name">Előadó neve</div>
+                    </div>
+                    <div class="flex items-center ml-2 space-x-1.5">
+                        <span class="text-gray-300 text-xs">02:00:00</span>
+                        <button class="text-gray-400 hover:text-gray-200">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script src="js/songs.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>
