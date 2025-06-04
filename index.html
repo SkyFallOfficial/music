@@ -3,41 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hiper szuper biztos nem kalózkodott zenét lejátszó alkalmazás</title>
+    <title>Music4Pirates</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <main>
+        <section class="flex justify-center items-center gap-4 mt-8 mb-4">
+            <label class="flex items-center cursor-pointer">
+                <span class="mr-2 text-gray-200 font-semibold"><i class="fa fa-music mr-1"></i>Normál</span>
+                <input type="checkbox" id="quality-switch" class="peer sr-only">
+
+                <div class="w-11 h-6 bg-gray-600 rounded-full peer-checked:bg-blue-600 relative transition">
+                    <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"></div>
+                </div>
+
+                <span class="ml-2 text-gray-200 font-semibold"><i class="fa fa-compact-disc mr-1"></i>Lossless</span>
+            </label>
+        </section>
+
         <section class="mb-4">
             <form id="search-form" class="flex justify-center items-center gap-2 mb-4">
                 <input type="text" id="search-input" placeholder="Keresés dalra..." class="rounded px-2 py-1 text-gray-900" />
             </form>
         </section>
 
-        <section id="songs">
-            <div id="song-template" style="display:none;">
-                <div class="flex items-center bg-gray-800 rounded-lg shadow-md p-2 max-w-xl mx-auto mb-3">
-                    <img src="img/placeholder.png" alt="Album borító" class="w-7 h-7 rounded-md object-cover mr-2">
-                    <div class="flex-1">
-                        <div class="font-semibold text-sm text-gray-100">Dal címe</div>
-                        <div class="text-xs text-gray-400 artist-name">Előadó neve</div>
+
+        <section id="songs-list-section" class="flex justify-center">
+            <div class="w-full max-w-xl h-[calc(100vh-320px)] overflow-y-auto pb-4" id="songs-scroll">
+                <section id="songs">
+                    <div id="song-template" style="display:none;">
+                        <div class="flex items-center bg-gray-800 rounded-lg shadow-md p-2 max-w-xl mx-auto mb-3">
+                            <img src="img/placeholder.png" alt="Album borító" class="w-7 h-7 rounded-md object-cover mr-2">
+
+                            <div class="flex-1">
+                                <div class="font-semibold text-sm text-gray-100">Dal címe</div>
+                                <div class="text-xs text-gray-400 artist-name">Előadó neve</div>
+                            </div>
+
+                            <div class="flex items-center ml-2 space-x-1.5">
+                                <span class="text-gray-300 text-xs">02:00:00</span>
+                                <button class="text-gray-400 hover:text-gray-200">
+                                    <i class="fa fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex items-center ml-2 space-x-1.5">
-                        <span class="text-gray-300 text-xs">02:00:00</span>
-                        <button class="text-gray-400 hover:text-gray-200">
-                            <i class="fa fa-ellipsis-v"></i>
-                        </button>
+                </section>
+            </div>
+        </section>
+
+
+        <section id="music-controller-section">
+            <div id="music-controller" class="fixed bottom-0 left-0 w-full bg-gray-900 text-white shadow-2xl z-50 flex items-center px-4 py-2 gap-4" style="min-height:64px;">
+                <img id="controller-cover" src="img/placeholder.png" alt="Album borító" class="w-12 h-12 rounded-md object-cover mr-2">
+
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-base truncate" id="controller-title">Dal címe</div>
+                    <div class="text-xs text-gray-400 truncate" id="controller-artist">Előadó neve</div>
+
+                    <div class="flex items-center gap-2 mt-1">
+                        <span id="controller-current" class="text-xs text-gray-300">0:00</span>
+                        <input id="controller-seek" type="range" min="0" max="100" value="0" class="w-full accent-blue-500 h-1">
+
+                        <span id="controller-duration" class="text-xs text-gray-300">0:00</span>
                     </div>
                 </div>
+                
+                <button id="controller-prev" class="mx-1 text-xl hover:text-blue-400"><i class="fa fa-step-backward"></i></button>
+                <button id="controller-play" class="mx-1 text-2xl hover:text-blue-400"><i class="fa fa-play"></i></button>
+                <button id="controller-next" class="mx-1 text-xl hover:text-blue-400"><i class="fa fa-step-forward"></i></button>
             </div>
         </section>
     </main>
 
-
-
-    <script src="js/songs.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/songs.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+{
+    "no_results": "Nincs találat.",
+    "album_cover": "Album borító",
+    "explicit": "Eröszakos zene",
+    "no_file": "Ennek a zenének nincsen fájlja",
+    "no_normal_file": "Ennek a zenének nincsen normál fájlja",
+    "no_lossless_file": "Ennek a zenének nincsen lossless fájlja",
+    "load_error": "Nem sikerült betölteni a dalokat."
+}

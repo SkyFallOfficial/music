@@ -1,0 +1,9 @@
+{
+    "no_results": "No results.",
+    "album_cover": "Album cover",
+    "explicit": "Explicit song",
+    "no_file": "This song has no files",
+    "no_normal_file": "This song has no normal file",
+    "no_lossless_file": "This song has no lossless file",
+    "load_error": "Failed to load songs."
+}
