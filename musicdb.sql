@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Jún 05. 00:33
+-- Létrehozás ideje: 2025. Jún 05. 19:21
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,56 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `musicdb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `albums`
+--
+
+CREATE TABLE `albums` (
+  `album_id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `artist_id` int(11) DEFAULT NULL,
+  `release_year` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `albums`
+--
+
+INSERT INTO `albums` (`album_id`, `title`, `artist_id`, `release_year`) VALUES
+(1, 'Abbey Road', 1, 1969),
+(2, 'The Marshall Mathers LP', 2, 2000),
+(3, 'Random Access Memories', 3, 2013),
+(4, 'A Night at the Opera', 4, 1975),
+(5, 'Scorpion', 5, 2018),
+(6, 'Inception Soundtrack', 6, 2010);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `artists`
+--
+
+CREATE TABLE `artists` (
+  `artist_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `genre` varchar(50) DEFAULT NULL,
+  `country` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `artists`
+--
+
+INSERT INTO `artists` (`artist_id`, `name`, `genre`, `country`) VALUES
+(1, 'The Beatles', 'Rock', 'UK'),
+(2, 'Eminem', 'Hip-Hop', 'USA'),
+(3, 'Daft Punk', 'Electronic', 'France'),
+(4, 'Queen', 'Rock', 'UK'),
+(5, 'Drake', 'Hip-Hop', 'Canada'),
+(6, 'Hans Zimmer', 'Classical', 'Germany');
 
 -- --------------------------------------------------------
 
@@ -71,6 +121,19 @@ INSERT INTO `songs` (`song_id`, `title`, `album_id`, `duration`, `explicit`, `im
 --
 
 --
+-- A tábla indexei `albums`
+--
+ALTER TABLE `albums`
+  ADD PRIMARY KEY (`album_id`),
+  ADD KEY `artist_id` (`artist_id`);
+
+--
+-- A tábla indexei `artists`
+--
+ALTER TABLE `artists`
+  ADD PRIMARY KEY (`artist_id`);
+
+--
 -- A tábla indexei `songs`
 --
 ALTER TABLE `songs`
@@ -82,6 +145,18 @@ ALTER TABLE `songs`
 --
 
 --
+-- AUTO_INCREMENT a táblához `albums`
+--
+ALTER TABLE `albums`
+  MODIFY `album_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT a táblához `artists`
+--
+ALTER TABLE `artists`
+  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT a táblához `songs`
 --
 ALTER TABLE `songs`
@@ -90,6 +165,12 @@ ALTER TABLE `songs`
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `albums`
+--
+ALTER TABLE `albums`
+  ADD CONSTRAINT `albums_ibfk_1` FOREIGN KEY (`artist_id`) REFERENCES `artists` (`artist_id`);
 
 --
 -- Megkötések a táblához `songs`
